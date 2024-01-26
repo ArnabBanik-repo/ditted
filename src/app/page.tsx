@@ -1,12 +1,14 @@
-import { Button, Input } from "@nextui-org/react";
+import { auth } from "@/auth";
+import Profile from "@/components/profile";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
   return (
     <div>
-      <Input />
-      <Button className="bg-slate-900 text-white">
-        Submit
-      </Button>
+      {
+        session?.user ? <div>Signed In</div> : <div>Not Signed In</div>
+      }
+      <Profile />
     </div>
   );
 }
