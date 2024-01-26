@@ -1,1 +1,3 @@
-Discuss is a Reddit clone
+# Ditted
+
+Ditted is a Reddit clone
