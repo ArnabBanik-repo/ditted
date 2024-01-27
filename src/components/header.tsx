@@ -1,23 +1,23 @@
-import { Button, Input, divider } from "@nextui-org/react";
-import * as actions from '@/app/actions'
+import { Input, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
+import HeaderAuth from "./header-auth";
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between">
-      <h1 className="text-3xl font-bold">Ditted</h1>
-      <div className="flex gap-4 items-center justify-end">
-        <form action={actions.signIn}>
-          <Button type="submit" className="bg-gray-300 text-black">
-            Sign in with Github
-          </Button>
-        </form>
-        <form action={actions.signOut}>
-          <Button type="submit">
-            Sign out
-          </Button>
-        </form>
-      </div>
-    </div>
-  );
-}
+    <Navbar className='shadow mb-6'>
+      <NavbarBrand>
+        <Link href="/" className='font-bold text-black'>Ditted</Link>
+      </NavbarBrand>
 
+      <NavbarContent justify='center'>
+        <NavbarItem>
+          <Input />
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarContent justify='end'>
+        <HeaderAuth />
+      </NavbarContent>
+    </Navbar>
+  )
+}
