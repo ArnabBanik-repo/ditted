@@ -5,6 +5,7 @@ import CommentCreateForm from "@/components/comments/comment-create-form";
 import paths from "@/paths";
 import { fetchCommentsWithAuthor } from "@/db/queries/comments";
 import { Suspense } from "react";
+import PostLoading from "@/components/posts/post-loading";
 
 interface PostShowPageProps {
   params: {
@@ -21,11 +22,11 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {"< "}Back to {slug}
       </Link>
-      <PostShow postId={postId} />
-      <CommentCreateForm postId={postId} startOpen />
-      <Suspense fallback={<div>Loading comments ...</div>}>
-        <CommentList fetchData={() => fetchCommentsWithAuthor(postId)} />
+      <Suspense fallback={<PostLoading />}>
+        <PostShow postId={postId} />
       </Suspense>
+      <CommentCreateForm postId={postId} startOpen />
+      <CommentList fetchData={() => fetchCommentsWithAuthor(postId)} />
     </div>
   );
 }
